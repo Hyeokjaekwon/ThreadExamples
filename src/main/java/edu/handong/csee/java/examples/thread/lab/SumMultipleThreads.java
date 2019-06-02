@@ -34,6 +34,15 @@ public class SumMultipleThreads implements Runnable{
 			threadsForSubSum.add(thread);
 		}
 
+		for (Thread thread: threadsForSubSum)
+		{
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
 		long grandTotal = 0;
 		for(SumMultipleThreads runner:sumRunners) {
 			grandTotal += runner.totalSum;
